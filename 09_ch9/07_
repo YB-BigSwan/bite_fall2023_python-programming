@@ -1,0 +1,23 @@
+def main(roll_forward):
+    time = (0, 0)
+    print(f'The current time is {time[0]:02d}:{time[1]:02d}')
+
+    added_hour = int(input('Enter hours to add: '))
+    added_min = int(input('Enter minutes to add: '))
+
+    while added_hour >= 0:
+        time = roll_forward(time, added_hour, added_min)
+        print(f'{time[0]:02d}:{time[1]:02d}')
+        added_hour = int(input('Enter hours to add: '))
+        if added_hour >= 0:
+            added_min = int(input('Enter minutes to add: '))
+
+def roll_forward(time, hours, minutes):
+    new_hour = (time[0] + hours + ((time[1] + minutes) // 60)) % 24
+    new_min = (time[1] + minutes) % 60
+
+    return(new_hour, new_min)
+
+
+if __name__ == '__main__':
+    main(roll_forward)
